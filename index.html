@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Geovisor Provincia Omasuyos – Red vial e hidrografía</title>
+  <meta name="description" content="Geovisor de la red vial e hidrografía de la provincia Omasuyos, La Paz, Bolivia. Datos OpenStreetMap.">
+  <link rel="stylesheet" href="css/leaflet.css">
+  <link rel="stylesheet" href="css/Control.Geocoder.css">
+  <link rel="stylesheet" href="css/Control.MiniMap.min.css">
+  <link rel="stylesheet" href="css/geovisor.css">
+</head>
+<body>
+  <header id="cabecera">
+    <img src="images/ESCUDO_EJERCITO.png" alt="Escudo del Ejército de Bolivia" class="logo">
+    <div class="titulo">
+      <div class="t1">PROVINCIA OMASUYOS</div>
+      <div class="t2">Red vial e hidrografía · La Paz, Bolivia</div>
+    </div>
+    <img src="images/LOGO_EMTE.png" alt="Escuela Militar de Topografía del Ejército" class="logo">
+  </header>
+  <div id="map"></div>
+
+  <!-- Datos (GeoJSON dentro de archivos JS: funciona sin servidor y en GitHub Pages) -->
+  <script src="js/leaflet.js"></script>
+  <script src="js/Control.Geocoder.js"></script>
+  <script src="js/Control.MiniMap.min.js"></script>
+  <script src="data/limite_omasuyos.js"></script>
+  <script src="data/lagos_lagunas_bofedales.js"></script>
+  <script src="data/quebradas_acequias.js"></script>
+  <script src="data/rios_canales.js"></script>
+  <script src="data/caminos_locales.js"></script>
+  <script src="data/vias_principales.js"></script>
+  <script src="js/leyenda.js"></script>
+  <script src="js/geovisor.js"></script>
+</body>
+</html>
