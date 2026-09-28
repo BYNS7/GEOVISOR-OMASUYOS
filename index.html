@@ -1,37 +1,130 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Geovisor Provincia Omasuyos – Red vial e hidrografía</title>
-  <meta name="description" content="Geovisor de la red vial e hidrografía de la provincia Omasuyos, La Paz, Bolivia. Datos OpenStreetMap.">
-  <link rel="stylesheet" href="css/leaflet.css">
-  <link rel="stylesheet" href="css/Control.Geocoder.css">
-  <link rel="stylesheet" href="css/Control.MiniMap.min.css">
-  <link rel="stylesheet" href="css/geovisor.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Geovisor SIG · Provincia Omasuyos · BYNS</title>
+<link rel="icon" href="img/escudo.png">
+<link rel="stylesheet" href="css/leaflet.css">
+<link rel="stylesheet" href="css/Control.MiniMap.min.css">
+<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <header id="cabecera">
-    <img src="images/ESCUDO_EJERCITO.png" alt="Escudo del Ejército de Bolivia" class="logo">
-    <div class="titulo">
-      <div class="t1">PROVINCIA OMASUYOS</div>
-      <div class="t2">Red vial e hidrografía · La Paz, Bolivia</div>
-    </div>
-    <img src="images/LOGO_EMTE.png" alt="Escuela Militar de Topografía del Ejército" class="logo">
-  </header>
-  <div id="map"></div>
 
-  <!-- Datos (GeoJSON dentro de archivos JS: funciona sin servidor y en GitHub Pages) -->
-  <script src="js/leaflet.js"></script>
-  <script src="js/Control.Geocoder.js"></script>
-  <script src="js/Control.MiniMap.min.js"></script>
-  <script src="data/limite_omasuyos.js"></script>
-  <script src="data/lagos_lagunas_bofedales.js"></script>
-  <script src="data/quebradas_acequias.js"></script>
-  <script src="data/rios_canales.js"></script>
-  <script src="data/caminos_locales.js"></script>
-  <script src="data/vias_principales.js"></script>
-  <script src="js/leyenda.js"></script>
-  <script src="js/geovisor.js"></script>
+<!-- ============ PANTALLA DE INGRESO ============ -->
+<div id="login">
+  <div id="login-form">
+    <div class="login-logos"><img src="img/escudo.png" alt="Escudo del Ejército de Bolivia"><img src="img/logo.png" alt="Logo EMTE"></div>
+    <h1>GEOVISOR SIG</h1>
+    <p class="sub">Provincia Omasuyos · Proyecto BYNS</p>
+    <p id="login-msg" role="status" style="color:#1f3b1f">Cargando capas…</p>
+  </div>
+</div>
+
+<!-- ============ GEOVISOR ============ -->
+<div id="app" hidden>
+  <header id="cab">
+    <button id="btn-panel" class="ico" title="Mostrar / ocultar panel" aria-label="Panel">☰</button>
+    <img src="img/escudo.png" class="logo" alt="Escudo">
+    <div class="titulo"><div class="t1">GEOVISOR SIG · PROVINCIA OMASUYOS</div><div class="t2">Proyecto BYNS · La Paz, Bolivia</div></div>
+    <img src="img/logo.png" class="logo" alt="EMTE">
+    <button id="btn-invitar" class="btn-cab" title="Invitar a otras personas">Invitar</button>
+    <button id="btn-salir" class="btn-cab" title="Volver a bloquear las capas militares">🔒 Bloquear</button>
+  </header>
+
+  <aside id="panel">
+    <nav class="tabs">
+      <button data-tab="capas" class="on">Capas</button>
+      <button data-tab="buscar">Buscar</button>
+      <button data-tab="herr">Herramientas</button>
+      <button data-tab="tabla">Tabla</button>
+    </nav>
+    <section id="tab-capas" class="tab on">
+      <div class="bloque"><div class="bt">MAPA BASE</div><div id="bases"></div></div>
+      <div id="arbol"></div>
+    </section>
+    <section id="tab-buscar" class="tab">
+      <div class="bloque">
+        <div class="bt">BUSCAR ELEMENTO</div>
+        <input id="q" type="search" placeholder="Nombre, municipio, hito, puesto…">
+        <div id="q-res" class="lista"></div>
+      </div>
+      <div class="bloque">
+        <div class="bt">IR A COORDENADA</div>
+        <input id="qc" type="text" placeholder="-16.0439, -68.6850  ó  533699 8226172 (UTM 19S)">
+        <button id="btn-ir" class="btn">Ir</button>
+        <p class="ayuda">Acepta grados decimales (lat, lon) o UTM zona 19 S (Este Norte).</p>
+      </div>
+    </section>
+    <section id="tab-herr" class="tab">
+      <div class="bloque">
+        <div class="bt">RUTAS</div>
+        <button class="btn herr" data-tool="ruta"><span class="sw" style="background:#00C853"></span>Ruta óptima (rápida y corta)</button>
+        <button class="btn herr" data-tool="pie"><span class="sw" style="background:#FF6F00"></span>Ruta a pie por el terreno</button>
+        <button class="btn sec" id="btn-borrar-rutas">Borrar rutas</button>
+        <p class="ayuda">Active una herramienta y haga clic en el ORIGEN y luego en el DESTINO.</p>
+      </div>
+      <div class="bloque">
+        <div class="bt">MEDICIÓN</div>
+        <button class="btn herr" data-tool="dist">Medir distancia</button>
+        <button class="btn herr" data-tool="area">Medir área</button>
+        <p class="ayuda">Clic para agregar vértices, doble clic para terminar.</p>
+      </div>
+      <div class="bloque">
+        <div class="bt">OTRAS</div>
+        <button class="btn herr" data-tool="identificar">Identificar (clic en cualquier capa)</button>
+        <button class="btn sec" id="btn-gps">Mi ubicación (GPS)</button>
+        <button class="btn sec" id="btn-imprimir">Imprimir / guardar PDF</button>
+      </div>
+      <div id="resultado" class="bloque" hidden></div>
+    </section>
+    <section id="tab-tabla" class="tab">
+      <div class="bloque">
+        <div class="bt">TABLA DE ATRIBUTOS</div>
+        <select id="t-capa"></select>
+        <input id="t-filtro" type="search" placeholder="Filtrar filas…">
+        <div class="fila-btn"><span id="t-cuenta"></span><button id="t-csv" class="btn sec mini">Exportar CSV</button></div>
+      </div>
+      <div id="t-wrap"></div>
+    </section>
+  </aside>
+
+  <div id="map"></div>
+  <div id="coords"></div>
+  <div id="tip" hidden></div>
+  <div id="aviso" hidden></div>
+</div>
+
+<!-- ============ INVITAR ============ -->
+<div id="modal" hidden>
+  <div class="caja">
+    <button class="cerrar" id="m-cerrar" aria-label="Cerrar">×</button>
+    <h2>Invitar al geovisor</h2>
+    <img src="img/qr.png" alt="Código QR del geovisor" class="qr">
+    <p class="enlace" id="m-url"></p>
+    <div class="fila-btn">
+      <button class="btn" id="m-copiar">Copiar enlace</button>
+      <a class="btn sec" id="m-wa" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+    </div>
+    <p class="ayuda">El mapa es de acceso libre. Las capas militares piden contraseña: entréguela por separado solo a personas autorizadas.</p>
+  </div>
+</div>
+
+<!-- ============ CONTRASEÑA PARA CAPAS MILITARES ============ -->
+<div id="clave" class="velo" hidden>
+  <form class="caja" id="clave-form" autocomplete="off">
+    <div style="font-size:34px">🔒</div>
+    <h2>Capas de defensa y frontera</h2>
+    <p class="ayuda">Información de uso restringido. Ingrese la contraseña para ver las capas militares.</p>
+    <input id="clave-pw" type="password" inputmode="numeric" placeholder="Contraseña" required>
+    <p id="clave-msg" role="alert"></p>
+    <div class="fila-btn"><button type="button" class="btn sec" id="clave-cancelar">Cancelar</button><button type="submit" class="btn">Desbloquear</button></div>
+  </form>
+</div>
+
+<script src="js/leaflet.js"></script>
+<script src="js/Control.MiniMap.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
