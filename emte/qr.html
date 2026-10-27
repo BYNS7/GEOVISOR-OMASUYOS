@@ -1,0 +1,12 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geovisor Omasuyos · QR</title>
+<style>body{margin:0;font-family:Segoe UI,system-ui,sans-serif;background:#0B1D33;display:flex;min-height:100vh;align-items:center;justify-content:center}
+.c{background:#fff;color:#0B1D33;border-radius:16px;padding:28px 34px;text-align:center;max-width:440px;box-shadow:0 20px 50px #0008;border-top:6px solid #B79A5B}
+h1{font-size:19px;letter-spacing:.06em;margin:0 0 4px}small{color:#5A6B80}#qr{margin:18px auto;width:290px;height:290px}#qr svg{width:290px;height:290px}
+.u{font:700 15px Consolas,monospace;background:#F1F4F9;border-radius:8px;padding:8px 12px;margin:6px 0 10px;word-break:break-all}</style></head>
+<body><div class="c"><h1>GEOVISOR OMASUYOS · EMTE</h1><small>Escanea para abrirlo desde cualquier celular o computadora</small>
+<div id="qr"></div><div class="u" id="u"></div><small>Funciona con cualquier conexión a internet.</small></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>const url=location.href.replace(/qr\.html.*$/,'');document.getElementById('u').textContent=url;
+try{const q=qrcode(0,'M');q.addData(url);q.make();document.getElementById('qr').innerHTML=q.createSvgTag({cellSize:6,margin:2,scalable:true});}catch(e){document.getElementById('qr').textContent='Abre la dirección de abajo.';}</script>
+</body></html>

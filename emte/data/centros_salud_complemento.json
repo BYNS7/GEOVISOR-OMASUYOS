@@ -1,0 +1,81 @@
+{
+ "1": {
+  "direccion": "Zona Norte Churubamba, Achacachi",
+  "quirofano": "Sí – modernizado el 18/09/2023 (autoclave y lámpara cialítica)",
+  "web": "https://www.facebook.com/profile.php?id=100083573521970",
+  "observacion": "Nombre en fachada: Hospital Municipal «Cap. Juan Uriona» Achacachi – 2do Nivel. Atención «siempre abierto» según su página. Recibió donación de botellones de oxígeno (GAM Achacachi).",
+  "fuentes": {
+   "direccion": "Facebook Hospital Achacachi 2022",
+   "quirofano": "Facebook Hospital Achacachi 2022 (post 18/09/2023)",
+   "web": "Facebook",
+   "observacion": "foto de fachada y Facebook GAM Achacachi"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "2": {
+  "acceso": "Plus Code 28GP+7V7 (Warisata)",
+  "observacion": "Recibió equipo de rayos X portátil de última generación (GAM Achacachi, 11/09/2026). Participa en estudio de telemedicina (UASB, 2025).",
+  "fuentes": {
+   "acceso": "archivo.biz",
+   "observacion": "Facebook GAM Achacachi / UASB"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "3": {
+  "observacion": "Nuevo edificio «Centro de Salud Integral Ancoraimes», entregado por el GAM Ancoraimes (entrega provisional y luego definitiva, ~2025).",
+  "fuentes": {
+   "observacion": "Facebook GAM Ancoraimes"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "4": {
+  "observacion": "Letrero de fachada: «Centro de Salud Chua Cocani – Emergencia 24 hrs». Edificio de 2 plantas. Beneficiado con donación de equipamiento (Iglesia SUD).",
+  "fuentes": {
+   "observacion": "foto de fachada / Sala de Prensa Iglesia SUD; Mapcarta N6584014786",
+   "direccion": "Ministerio de Salud y Deportes – Establecimientos SUS La Paz (Estab_LaPaz.pdf)"
+  },
+  "actualizado": "2026-10-19",
+  "direccion": "CARRETERA PANAMERICANA, CAMINO A COPACABANA S/N, AL LADO DEL BATALLÓN DE INFANTERÍA MARÍTIMA"
+ },
+ "5": {
+  "web": "https://www.facebook.com/profile.php?id=100062532364345",
+  "observacion": "Letrero «Centro de Salud Huarina» en portón de ingreso. Realiza ferias de salud (SUS) y talleres comunitarios.",
+  "fuentes": {
+   "web": "Facebook C.S. con Internación Huarina",
+   "observacion": "Wikiloc / Facebook"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "6": {
+  "acceso": "Plus Code Q8R2+794 (Huatajata)",
+  "observacion": "Inauguró laboratorio clínico propio. Supervisado por SEDES La Paz.",
+  "fuentes": {
+   "acceso": "archivo.biz",
+   "observacion": "TikTok / Facebook SEDES La Paz"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "7": {
+  "web": "http://huatajata2030.blogspot.com/2017/11/centro-de-salud-de-la-comunidad.html",
+  "observacion": "Edificio de una planta con techo rojo, junto a la carretera.",
+  "fuentes": {
+   "web": "Blog El Huatajateño",
+   "observacion": "foto 2017"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "8": {
+  "observacion": "Letrero de fachada: «Centro de Salud Santiago de Huata». Recibió equipamiento e insumos médicos (SEDES/MSyD, nota ABI).",
+  "fuentes": {
+   "observacion": "ABI; video Radio Líder 97 (Facebook)"
+  },
+  "actualizado": "2026-10-15"
+ },
+ "21": {
+  "direccion": "AL LADO DE LA UNIDAD EDUCATIVA PONGONHUYO",
+  "fuentes": {
+   "direccion": "Ministerio de Salud y Deportes – Establecimientos SUS La Paz (Estab_LaPaz.pdf)"
+  },
+  "actualizado": "2026-10-19"
+ }
+}
